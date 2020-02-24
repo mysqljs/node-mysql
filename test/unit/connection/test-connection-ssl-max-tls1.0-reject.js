@@ -19,7 +19,7 @@ server.listen(common.fakeServerPort, function(err) {
 
   connection.ping(function(err) {
     const NODE_MAJOR_VERSION = process.versions.node.split('.')[0];
-    if (!err && NODE_MAJOR_VERSION >= 10) assert.fail("Should have thrown when running Node12")
+    if (!err && NODE_MAJOR_VERSION >= 10) assert.fail("Expected to fail due to mismatched TLS versions for Node12+")
     connection.destroy();
     server.destroy();
   });

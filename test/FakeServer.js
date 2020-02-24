@@ -20,7 +20,7 @@ module.exports = FakeServer;
 Util.inherits(FakeServer, EventEmitter);
 function FakeServer(options) {
   EventEmitter.call(this);
-  this._options      = options || {};
+  this._options     = options || {};
   this._server      = null;
   this._connections = [];
 }
