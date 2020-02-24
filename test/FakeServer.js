@@ -18,9 +18,10 @@ var Util            = require('util');
 
 module.exports = FakeServer;
 Util.inherits(FakeServer, EventEmitter);
-function FakeServer() {
+function FakeServer(options) {
   EventEmitter.call(this);
 
+  this.options      = options || {};
   this._server      = null;
   this._connections = [];
 }
@@ -435,7 +436,7 @@ if (tls.TLSSocket) {
     this._socket.removeAllListeners('data');
 
     // socket <-> encrypted
-    var secureContext = tls.createSecureContext(common.getSSLConfig());
+    var secureContext = tls.createSecureContext(common.getSSLConfig(this.options));
     var secureSocket  = new tls.TLSSocket(this._socket, {
       secureContext : secureContext,
       isServer      : true
