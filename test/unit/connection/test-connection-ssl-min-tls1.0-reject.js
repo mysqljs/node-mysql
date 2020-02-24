@@ -4,13 +4,13 @@ var connection = common.createConnection({
   port : common.fakeServerPort,
   ssl  : {
     ca: common.getSSLConfig().ca,
-    minVersion: 'TLSv1'
+    maxVersion: 'TLSv1'
   }
 });
 
 var server = common.createFakeServer({
   ssl: {
-    maxVersion: 'TLSv1'
+    minVersion: 'TLSv1.2'
   }
 });
 
@@ -18,7 +18,7 @@ server.listen(common.fakeServerPort, function(err) {
   if (err) throw err;
 
   connection.ping(function(err) {
-    assert.ifError(err);
+    if (!err) assert.fail("Should have thrown")
     connection.destroy();
     server.destroy();
   });

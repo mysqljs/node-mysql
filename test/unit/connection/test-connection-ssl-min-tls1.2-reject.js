@@ -4,13 +4,13 @@ var connection = common.createConnection({
   port : common.fakeServerPort,
   ssl  : {
     ca: common.getSSLConfig().ca,
-    minVersion: 'TSLv1.2'
+    minVersion: 'TLSv1.2'
   }
 });
 
 var server = common.createFakeServer({
   ssl: {
-    maxVersion: 'TLSv1.1'
+    maxVersion: 'TLSv1'
   }
 });
 

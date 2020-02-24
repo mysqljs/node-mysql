@@ -20,8 +20,7 @@ module.exports = FakeServer;
 Util.inherits(FakeServer, EventEmitter);
 function FakeServer(options) {
   EventEmitter.call(this);
-
-  this.options      = options || {};
+  this._options      = options || {};
   this._server      = null;
   this._connections = [];
 }
@@ -32,7 +31,7 @@ FakeServer.prototype.listen = function(port, cb) {
 };
 
 FakeServer.prototype._handleConnection = function(socket) {
-  var connection = new FakeConnection(socket);
+  var connection = new FakeConnection(socket, this._options);
 
   if (!this.emit('connection', connection)) {
     connection.handshake();
@@ -54,16 +53,17 @@ FakeServer.prototype.destroy = function() {
 };
 
 Util.inherits(FakeConnection, EventEmitter);
-function FakeConnection(socket) {
+function FakeConnection(socket, options) {
   EventEmitter.call(this);
 
   this.database = null;
   this.user     = null;
 
-  this._cipher = null;
-  this._socket = socket;
-  this._stream = socket;
-  this._parser = new Parser({onPacket: this._parsePacket.bind(this)});
+  this._options = options;
+  this._cipher  = null;
+  this._socket  = socket;
+  this._stream  = socket;
+  this._parser  = new Parser({onPacket: this._parsePacket.bind(this)});
 
   this._expectedNextPacket            = null;
   this._handshakeInitializationPacket = null;
@@ -433,10 +433,9 @@ if (tls.TLSSocket) {
   FakeConnection.prototype._startTLS = function _startTLS() {
     // halt parser
     this._parser.pause();
-    this._socket.removeAllListeners('data');
-
+    this._socket.removeAllListeners('data');  
     // socket <-> encrypted
-    var secureContext = tls.createSecureContext(common.getSSLConfig(this.options));
+    var secureContext = tls.createSecureContext(common.getSSLConfig(this._options));
     var secureSocket  = new tls.TLSSocket(this._socket, {
       secureContext : secureContext,
       isServer      : true
