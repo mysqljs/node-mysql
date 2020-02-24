@@ -15,7 +15,7 @@ var server = common.createFakeServer({
 });
 
 server.listen(common.fakeServerPort, function(err) {
-  const NODE_MAJOR_VERSION = process.versions.node.split('.')[0];
+  var NODE_MAJOR_VERSION = process.versions.node.split('.')[0];
   if (err) throw err;
   connection.ping(function(err) {
     if (!err && NODE_MAJOR_VERSION >= 10) assert.fail("Expected to fail due to mismatched TLS versions for Node12+")

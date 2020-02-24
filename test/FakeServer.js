@@ -433,7 +433,7 @@ if (tls.TLSSocket) {
   FakeConnection.prototype._startTLS = function _startTLS() {
     // halt parser
     this._parser.pause();
-    this._socket.removeAllListeners('data');  
+    this._socket.removeAllListeners('data');
     // socket <-> encrypted
     var secureContext = tls.createSecureContext(common.getSSLConfig(this._options));
     var secureSocket  = new tls.TLSSocket(this._socket, {

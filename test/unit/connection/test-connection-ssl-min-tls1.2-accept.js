@@ -3,8 +3,8 @@ var common     = require('../../common');
 var connection = common.createConnection({
   port : common.fakeServerPort,
   ssl  : {
-    ca: common.getSSLConfig().ca,
-    minVersion: 'TLSv1.2'
+    ca         : common.getSSLConfig().ca,
+    minVersion : 'TLSv1.2'
   }
 });
 

@@ -142,12 +142,12 @@ common.getSSLConfig = function(options) {
   options = options || {};
   options.ssl = options.ssl || {};
   return {
-    ca      : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
-    cert    : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
-    ciphers : 'ECDHE-RSA-AES128-SHA256:AES128-GCM-SHA256:AES128-SHA:HIGH:!MD5:!aNULL:!EDH',
-    key     : fs.readFileSync(path.join(common.fixtures, 'server.key'), 'ascii'),
-    minVersion: options.ssl.minVersion || 'TLSv1',
-    maxVersion: options.ssl.maxVersion || 'TLSv1.2'
+    ca         : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
+    cert       : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
+    ciphers    : 'ECDHE-RSA-AES128-SHA256:AES128-GCM-SHA256:AES128-SHA:HIGH:!MD5:!aNULL:!EDH',
+    key        : fs.readFileSync(path.join(common.fixtures, 'server.key'), 'ascii'),
+    minVersion : options.ssl.minVersion || 'TLSv1',
+    maxVersion : options.ssl.maxVersion || 'TLSv1.2'
   };
 };
 
