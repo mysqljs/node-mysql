@@ -147,7 +147,7 @@ common.getSSLConfig = function(options) {
     ciphers : 'ECDHE-RSA-AES128-SHA256:AES128-GCM-SHA256:AES128-SHA:HIGH:!MD5:!aNULL:!EDH',
     key     : fs.readFileSync(path.join(common.fixtures, 'server.key'), 'ascii'),
     minVersion: options.ssl.minVersion || 'TLSv1',
-    maxVersion: options.ssl.maxVersion || 'TLSv1.3'
+    maxVersion: options.ssl.maxVersion || 'TLSv1.2'
   };
 };
 
