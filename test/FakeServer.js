@@ -435,7 +435,8 @@ if (tls.TLSSocket) {
     this._parser.pause();
     this._socket.removeAllListeners('data');
     // socket <-> encrypted
-    var secureContext = tls.createSecureContext(common.getSSLConfig(this._options));
+    var ssl = this._options.ssl || {};
+    var secureContext = tls.createSecureContext(common.extend(common.getSSLConfig(), ssl));
     var secureSocket  = new tls.TLSSocket(this._socket, {
       secureContext : secureContext,
       isServer      : true
