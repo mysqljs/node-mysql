@@ -279,7 +279,7 @@ The current supported options are:
 - `cert`: Cert chains in PEM format. 
 - `ciphers`: Cipher suite specification, replacing the default.
 - `key`: Private keys in PEM format. 
-- `maxVersion`: Optionally set the minimum TLS version to allow.
+- `maxVersion`: Optionally set the maximum TLS version to allow.
 - `minVersion`: Optionally set the minimum TLS version to allow. One of `'TLSv1.3'`, `'TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. 
 - `passphrase`: Shared passphrase used for a single private key and/or a PFX.
 
