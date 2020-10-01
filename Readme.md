@@ -271,7 +271,19 @@ it uses one of the predefined SSL profiles included. The following profiles are 
 When connecting to other servers, you will need to provide an object of options, in the
 same format as [tls.createSecureContext](https://nodejs.org/api/tls.html#tls_tls_createsecurecontext_options).
 Please note the arguments expect a string of the certificate, not a file name to the
-certificate. Here is a simple example:
+certificate. 
+
+The current supported options are:
+
+- `ca`: Optionally override the trusted CA certificates.
+- `cert`: Cert chains in PEM format. 
+- `ciphers`: Cipher suite specification, replacing the default.
+- `key`: Private keys in PEM format. 
+- `maxVersion`: Optionally set the maximum TLS version to allow.
+- `minVersion`: Optionally set the minimum TLS version to allow. One of `'TLSv1.3'`, `'TLSv1.2'`, `'TLSv1.1'`, or `'TLSv1'`. 
+- `passphrase`: Shared passphrase used for a single private key and/or a PFX.
+
+Here is a simple example:
 
 ```js
 var connection = mysql.createConnection({

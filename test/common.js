@@ -140,10 +140,12 @@ common.getTestConfig = function(config) {
 
 common.getSSLConfig = function() {
   return {
-    ca      : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
-    cert    : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
-    ciphers : 'ECDHE-RSA-AES128-SHA256:AES128-GCM-SHA256:AES128-SHA:HIGH:!MD5:!aNULL:!EDH',
-    key     : fs.readFileSync(path.join(common.fixtures, 'server.key'), 'ascii')
+    ca         : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
+    cert       : fs.readFileSync(path.join(common.fixtures, 'server.crt'), 'ascii'),
+    ciphers    : 'ECDHE-RSA-AES128-SHA256:AES128-GCM-SHA256:AES128-SHA:HIGH:!MD5:!aNULL:!EDH',
+    key        : fs.readFileSync(path.join(common.fixtures, 'server.key'), 'ascii'),
+    minVersion : 'TLSv1',
+    maxVersion : 'TLSv1.2'
   };
 };
 
